@@ -2,8 +2,7 @@ var dias = ['lunes', 'martes','miercoles','jueves','viernes','sabado','domingo']
 var esUnDia=false;
 var diaIngresado = prompt('ingrese un dia de la semana').toLowerCase();
 
-for(var dia in dias){
-	console.log(dia);
+for(dia in dias){
 
 	if(diaIngresado === dias[dia]){
 		esUnDia=true;
