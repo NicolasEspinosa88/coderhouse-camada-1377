@@ -1,11 +1,12 @@
 var dias = ['lunes', 'martes','miercoles','jueves','viernes','sabado','domingo'];
+var esUnDia=false;
+var diaIngresado = prompt('ingrese un dia de la semana').toLowerCase();
 
-var diaIngresado = prompt('ingrese un dia');
-for (dia of dias) {
+for(var dia in dias){
 	console.log(dia);
 
-	if(diaIngresado === dia){
-
+	if(diaIngresado === dias[dia]){
+		esUnDia=true;
 		if(esHabil(diaIngresado)){
 			alert('el dia es habil');
 		}else{
@@ -13,13 +14,10 @@ for (dia of dias) {
 		}
 		break;
 	}
-};
+}
+if(!esUnDia)
+	alert('el dia ingresado es incorrecto');
 
 function esHabil(dia){
-	
-	if(dia === 'sabado' || dia ==='domingo'){
-		return false;
-	}else{
-		return true;
-	}
+	return !(dia === 'sabado' || dia ==='domingo');
 }
