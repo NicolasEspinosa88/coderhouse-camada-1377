@@ -20,7 +20,9 @@ function CrearAuto(color,modelo,patente,marca){
 	this.apagar = function(){
 		if(this.prendido===true){
 			this.prendido = false;
+			this.velocidad = 0;
 			alert('el auto se apago');
+
 		}else{
 			alert('el auto ya estaba apagado');
 		}
@@ -32,10 +34,10 @@ function CrearAuto(color,modelo,patente,marca){
 			var nuevaVelocidad = this.velocidad + velocidadAceleracion;
 			
 			if( nuevaVelocidad > this.velocidadMaxima){
-				alert('la velocidad no puede ser mayor a '+velocidadMaxima );
+				alert('la velocidad no puede ser mayor a '+ velocidadMaxima );
 			}else{
 				this.velocidad += velocidadAceleracion;
-				alert('el auto acelero '+ velocidadAceleracion);
+				alert('el auto acelero '+ velocidadAceleracion+ '. La velocidad actual es '+ this.velocidad);
 			}
 			
 		}else{
@@ -51,14 +53,14 @@ function CrearAuto(color,modelo,patente,marca){
 	this.frenar = function(velocidadFrenado){
 		if(this.prendido){
 			var nuevaVelocidad = this.velocidad -= velocidadFrenado;
-			
+
 			if(nuevaVelocidad < 0){
 				alert('no se puede disminuir mas que la velocidad actual');
 			}else{
 				this.velocidad -= velocidadAceleracion;
-				alert('el auto freno ' + velocidadFrenado);
+				alert('el auto freno ' + velocidadFrenado+'. La velocidad actual es '+ this.velocidad);
 			}
-			
+
 		}else{
 			alert('el auto esta apagado');
 		}
