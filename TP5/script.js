@@ -1,78 +1,86 @@
-var arrayPeliculas = [];
-var contadorPeliculas= 1;
-
-
-function pelicula(titulo){
-	this.id = contadorPeliculas;
+function Pelicula(titulo , id){
+	this.id = id;
 	this.titulo = titulo;
-	contadorPeliculas++;
 
 	this.getTitulo = function(){
 		return this.titulo;
 	}
+
+	this.getId = function(){
+		return this.id;
+	}
 }
 
-function mostrarPeliculas(){
 
-	for(peli in arrayPeliculas){
-		console.log(arrayPeliculas[peli]);
+function Videoteca(){
+
+	var arrayPeliculas = [];
+	var contadorPeliculas= 1;
+
+
+
+	this.mostrarPeliculas= function(){
+		for(peli in arrayPeliculas){
+			console.log(arrayPeliculas[peli]);
+		}
 	}
 
-}
+	this.agregarPelicula = function(laPelicula){		
+		if(!this.peliculaRepetida(laPelicula)){
+			var peli = new Pelicula(laPelicula, contadorPeliculas);
+			arrayPeliculas.push(peli);
+			contadorPeliculas++;
+		}
+		else{
+			alert('la pelicula '+ laPelicula+' ya esta en el array');
+		}
 
-function agregarPelicula(laPelicula){
+	}
+
+	this.peliculaRepetida=function(pelicula){
+		
+		for(peli in arrayPeliculas){
+			if(pelicula === arrayPeliculas[peli].getTitulo()){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	this.ordenarArrayPorId=function(){
+		arrayPeliculas.sort(function(a,b){
+			return (a.id - b.id);
+		})
+	}
+
+
+	this.ordenarArrayPorNombre=function(){
+		arrayPeliculas.sort(function(a,b){
+			if (a.titulo > b.titulo) {
+				return 1;
+	  		}
+			if (a.titulo < b.titulo) {
+				return -1;
+			}
+				return 0;
+			});
+	}
+
+
+	this.eliminarPeliculaPorId=function(id){
+		for(peli in arrayPeliculas){
+			if(arrayPeliculas[peli].id === id){
+				alert('se ha eliminado la pelicula '+ arrayPeliculas[peli].titulo);
+				arrayPeliculas.splice(peli,1);
+				break;
+			}
+		}
+		alert('la pelicula no esta en la lista');
+	}
 	
-	var peli = new pelicula(laPelicula)
-
-	if(!peliculaRepetida(laPelicula))
-		arrayPeliculas.push(peli);
-	else{
-		alert('la pelicula '+ laPelicula+' ya esta en el array');
-	}
-
 }
 
-function peliculaRepetida(pelicula){
-	
-	for(peli in arrayPeliculas){
-		if(pelicula === arrayPeliculas[peli].getTitulo()){
-			return true;
-		}
-	}
-	return false;
-}
+var miVideoteca = new Videoteca();
 
-function ordenarArrayPorId(){
-	arrayPeliculas.sort(function(a,b){
-		return (a.id - b.id);
-	})
-}
-
-
-function ordenarArrayPorNombre(){
-	arrayPeliculas.sort(function(a,b){
-		if (a.titulo > b.titulo) {
-			return 1;
-  		}
-		if (a.titulo < b.titulo) {
-			return -1;
-		}
-			return 0;
-		});
-}
-
-
-function eliminarPelicula(id){
-	for(peli in arrayPeliculas){
-		if(arrayPeliculas[peli].id === id){
-			alert('se ha eliminado la pelicula '+ arrayPeliculas[peli].titulo);
-			arrayPeliculas.splice(peli,1);
-			break;
-		}
-	}
-	alert('la pelicula no esta en la lista');
-}
-
-
-agregarPelicula('terminator');
+miVideoteca.agregarPelicula('terminator');
 
