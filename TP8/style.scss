@@ -1,0 +1,28 @@
+#peliculas-container{
+	display: flex;
+}
+.card{
+
+	margin: 50px;
+	width: 20%;
+	height: 400px;
+	border: 1px solid #000;
+	text-align: center;
+	&__imagen{
+		width: 100%;
+		height: 200px;
+	}
+
+	&__titulo{
+		height:10px;
+	}
+
+	&__descripcion{
+		height: 100px;
+		overflow: hidden;
+	}
+	&__boton{
+		width: 80%;
+		margin:0;
+	}
+}
